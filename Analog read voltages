@@ -1,0 +1,20 @@
+int readPin = A3; 
+int v2 = 0; 
+int delaytime = 500; 
+// try to avoid using constants in the void loop 
+void setup()  {
+  Serial.begin(9600);
+  pinMode(readPin, INPUT);
+
+} 
+
+
+void loop() {
+  v2 = analogRead(readPin); // read v2 from the readPin 
+  // originally prints values from 0 to 1023 since 2^8 bits
+  v2 = (5./1023.)*v2; // convert to vlots
+  Serial.println(v2); // now print it
+  delay(delaytime); 
+}
+
+  
