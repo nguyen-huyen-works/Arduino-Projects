@@ -1,0 +1,39 @@
+// Including all necessary libraries 
+#include "SoftwareSerial.h"
+#include "DFRobotDFPlayerMini.h"
+
+
+// SETUP!! 
+int PIN_MP3_RX = 10;
+int PIN_MP3_TX = 11;
+
+
+// Here we are creating a virtual serial port in software bc the DFPlayer Mini talks using the Serial UART while the arduino nano only has one serial port for debugging on our computers. 
+// This is an object!! 
+SoftwareSerial mp3Serial(PIN_MP3_RX, PIN_MP3_TX);  // RX, TX
+// rxPin: the pin on which to receive serial data.
+// txPin: the pin on which to transmit serial data
+
+// here we are creating an object that connects the DFPlayer module from Arduino! 
+DFRobotDFPlayerMini MP3player;
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600) // this is for debugging
+  mp3Serial.begin(9600) // this is for dfplayer mini 
+  // Checking for the DFPLAYER RESPONSE [DEBUGGING] 
+  if (MP3player.begin(mp3Serial)) { // using this serial port, check if it exists or began yet? 
+    Serial.println("Hi guys! I'm wake!")
+  }
+  else {
+    Serial.println("Nothing")
+  }
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
